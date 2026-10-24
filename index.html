@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bumbum Tamtam · Beach Tennis</title>
+<meta name="description" content="Equipo Bumbum Tamtam: beach tennis, arena y cero vergüenza.">
+<meta name="theme-color" content="#0C3B17">
+<link rel="icon" href="img/logo-sm.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Doto:wght@800&family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pino:#0C3B17;
+  --lima:#E3E344;
+  --crema:#EDE7C2;
+  --hueso:#F2F3EC;
+  --negro:#000;
+  --r:22px;
+  --gut:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:"Bricolage Grotesque",system-ui,sans-serif;background:var(--hueso);color:var(--negro);line-height:1.5;overflow-x:hidden;position:relative}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+section,footer{position:relative;padding:72px var(--gut)}
+.wrap{position:relative;z-index:2;max-width:980px;margin:0 auto}
+
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:99px;border:1.5px solid currentColor;margin-bottom:16px}
+h2{font-size:clamp(40px,11vw,76px);font-weight:800;line-height:.92;letter-spacing:-.03em;margin-bottom:12px}
+.lead{font-size:18px;max-width:34ch}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 24px;border-radius:99px;font:600 16px/1 inherit;font-family:inherit;text-decoration:none;border:2px solid var(--negro);transition:transform .15s}
+.btn:active{transform:scale(.97)}
+.btn-lima{background:var(--lima);color:var(--negro)}
+.btn-ghost{background:transparent;color:var(--hueso);border-color:var(--hueso)}
+.btn-negro{background:var(--negro);color:var(--hueso)}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--pino);color:var(--hueso);min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:48px;padding-bottom:40px}
+.hero-title{display:grid;grid-template-columns:minmax(0,1fr) 84px;align-items:center;gap:8px}
+.hero-title h1{margin:0}
+.hero-title img{width:100%;filter:drop-shadow(0 6px 0 rgba(0,0,0,.25))}
+.ball-spot{width:84px;aspect-ratio:1;justify-self:end}
+.hero p{font-size:19px;margin:28px 0 32px;max-width:28ch;color:var(--crema)}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hero-ctas .btn{flex:1 1 140px}
+.scroll-cue{margin-top:48px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--crema);display:flex;align-items:center;gap:10px}
+.scroll-cue::after{content:"";width:40px;height:2px;background:var(--lima)}
+
+/* ---------- Últimos partidos ---------- */
+.ultimos{background:var(--hueso)}
+/* los cards dejan sitio a la derecha para el jugador que pisa la sección de abajo */
+.matches{display:grid;gap:12px;margin-top:28px;width:calc(100% - 150px);align-items:start}
+.match{background:var(--crema);border-radius:var(--r);padding:16px}
+.match-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;font-size:13px;margin-bottom:10px}
+.badge{font-size:13px;font-weight:600;padding:6px 14px;border-radius:99px}
+.badge.win{background:var(--lima)}
+.badge.loss{background:var(--hueso);border:1.5px solid var(--negro)}
+.team{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:10px 0}
+.team + .team{border-top:1.5px dashed rgba(0,0,0,.25)}
+.match-vs{font-size:14px;line-height:1.3;margin-bottom:4px}
+.match-vs b{font-weight:600}
+.team b{font-weight:600;font-size:15px;line-height:1.2}
+.sets{display:flex;gap:8px;font-family:"Doto",monospace;font-weight:800;font-size:26px;line-height:1}
+.sets span{opacity:.28}
+.sets span.w{opacity:1}
+.match-foot{margin-top:10px;font-size:13px;opacity:.75}
+
+/* ---------- Sobre nosotros ---------- */
+.about{background:var(--lima)}
+.about-grid{display:grid;gap:24px}
+/* pies ~14px dentro del amarillo: 72px = padding-top de la sección */
+.pisando{position:absolute;z-index:2;right:-8px;bottom:calc(100% + 72px - 14px);width:170px;pointer-events:none}
+.about .scribble{display:block;width:180px;height:16px;margin:-4px 0 18px;color:var(--pino)}
+.about-text p{font-size:18px;max-width:36ch}
+.about-text p + p{margin-top:12px}
+.mascota{width:min(78%,340px);margin:0 auto;transform:rotate(-4deg)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px}
+.stat{background:var(--pino);color:var(--hueso);border-radius:18px;padding:16px 12px}
+.stat strong{display:block;font-size:34px;font-weight:800;line-height:1;color:var(--lima)}
+.stat span{font-size:13px}
+
+/* ---------- Merch ---------- */
+.merch{background:var(--crema)}
+.products{display:grid;gap:14px;margin-top:28px}
+.product{background:var(--hueso);border-radius:var(--r);overflow:hidden}
+.product img{width:100%;aspect-ratio:1;object-fit:cover;background:#fff}
+.product-info{display:flex;justify-content:space-between;align-items:center;padding:16px 18px}
+.product-info b{font-size:18px;font-weight:600}
+.product-info small{display:block;font-size:14px;opacity:.65}
+.price{font-family:"Doto",monospace;font-weight:800;font-size:28px}
+.merch .btn{width:100%;margin-top:18px}
+
+/* ---------- Próximos partidos ---------- */
+.proximos{background:var(--hueso)}
+.dates{display:flex;gap:8px;overflow-x:auto;margin:28px calc(var(--gut) * -1) 0;padding:4px var(--gut) 8px;scrollbar-width:none}
+.dates::-webkit-scrollbar{display:none}
+.date{flex:0 0 76px;height:92px;border-radius:99px;border:1.5px solid var(--negro);background:transparent;font-family:inherit;color:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;transition:background .2s,color .2s}
+.date span{font-size:12px;white-space:nowrap}
+.date strong{font-size:24px;font-weight:800;line-height:1}
+.date[aria-selected="true"]{background:var(--pino);color:var(--lima);border-color:var(--pino)}
+.next-card{margin-top:14px;background:var(--pino);color:var(--hueso);border-radius:var(--r);padding:22px}
+.next-card .tag{display:inline-block;background:var(--lima);color:var(--negro);font-size:13px;font-weight:600;padding:5px 12px;border-radius:99px}
+.next-card h3{font-size:30px;font-weight:800;line-height:1;margin:16px 0 4px;letter-spacing:-.02em}
+.next-card .vs{color:var(--crema);font-size:15px}
+.next-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0;padding-top:18px;border-top:1.5px dashed rgba(242,243,236,.3)}
+.next-meta small{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--crema);opacity:.7}
+.next-meta b{font-family:"Doto",monospace;font-weight:800;font-size:26px;color:var(--lima)}
+.next-meta b.txt{font-family:inherit;font-size:16px;font-weight:600;color:var(--hueso)}
+.next-card .btn{width:100%}
+.btn[hidden]{display:none}
+
+/* ---------- Frase ---------- */
+.frase{background:var(--pino);color:var(--hueso);padding-top:72px;padding-bottom:72px}
+.frase-grid{display:grid;grid-template-columns:124px minmax(0,1fr);gap:12px;align-items:center}
+.frase-grid .jugadora{order:-1}
+.frase .squiggle{width:72px;height:24px;color:var(--lima);margin-bottom:22px}
+.frase blockquote{font-family:"Fraunces",Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(28px,7.6vw,60px);line-height:1.08;letter-spacing:-.01em;max-width:18ch}
+.jugadora{position:relative;margin-left:-8px}
+.jugadora img{width:100%}
+/* posición de la bola original de la foto (centro 85.8% / 5.4%) */
+.ball-land{position:absolute;left:85.8%;top:5.4%;width:16%;aspect-ratio:1;transform:translate(-50%,-50%)}
+.frase cite{display:block;margin-top:24px;font-style:normal;font-size:15px;color:var(--crema)}
+.frase cite b{color:var(--lima);font-weight:600}
+
+/* ---------- Footer ---------- */
+footer{background:var(--negro);padding:32px var(--gut) calc(32px + env(safe-area-inset-bottom));display:flex;justify-content:center}
+footer img{width:88px}
+
+/* ---------- La bola ---------- */
+#ball{position:absolute;top:0;left:0;z-index:1;width:100px;height:100px;pointer-events:none;will-change:transform;transform-origin:0 0}
+#ball svg{width:100%;height:100%;display:block}
+
+@media (min-width:760px){
+  :root{--gut:40px}
+  section,footer{padding-top:110px;padding-bottom:110px}
+  .hero-title{grid-template-columns:minmax(0,1fr) 180px;gap:32px;max-width:900px}
+  .ball-spot{width:180px}
+  .hero p{font-size:22px}
+  .hero-ctas .btn{flex:0 0 auto}
+  .matches{grid-template-columns:repeat(auto-fill,minmax(300px,380px));width:calc(100% - 340px)}
+  .match{padding:20px}
+  .match-top{font-size:14px;margin-bottom:18px}
+  .team b{font-size:16px}
+  .sets{font-size:34px;gap:10px}
+  .pisando{width:300px;right:0;bottom:calc(100% + 110px - 18px)}
+  .about-grid{grid-template-columns:1.2fr 1fr;align-items:center}
+  .products{grid-template-columns:1fr 1fr}
+  .merch .btn{width:auto}
+  .next-card{max-width:520px}
+  /* la foto cabe entera en pantalla para que se vea la bola llegar a la raqueta */
+  .frase{padding-top:56px;padding-bottom:56px}
+  .frase-grid{grid-template-columns:auto minmax(0,1fr);gap:72px}
+  .jugadora{margin-left:0}
+  .jugadora img{width:auto;height:min(560px,62vh)}
+  footer{padding-top:56px;padding-bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- La bola: viaja del hero al footer con el scroll -->
+<div id="ball" aria-hidden="true">
+  <svg viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="46" fill="#E3E344" stroke="#000" stroke-width="4"/>
+    <path d="M22 87c12-10 18-24 18-37S34 23 22 13" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+    <path d="M22 87c12-10 18-24 18-37S34 23 22 13" fill="none" stroke="#EDE7C2" stroke-width="5" stroke-linecap="round"/>
+    <path d="M78 13C66 23 60 37 60 50s6 27 18 37" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+    <path d="M78 13C66 23 60 37 60 50s6 27 18 37" fill="none" stroke="#EDE7C2" stroke-width="5" stroke-linecap="round"/>
+    <path d="M20 70a40 40 0 0 0 50 22" fill="none" stroke="#B9B92A" stroke-width="6" stroke-linecap="round" opacity=".55"/>
+    <ellipse cx="33" cy="25" rx="7" ry="4" fill="#fff" opacity=".6" transform="rotate(-35 33 25)"/>
+  </svg>
+</div>
+
+<!-- 01 · Hero -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div class="hero-title">
+      <h1><img src="img/logo.webp" alt="Equipo Bumbum Tamtam" width="900" height="349"></h1>
+      <div class="ball-spot" id="ball-start"></div>
+    </div>
+    <p>Beach tennis, arena hasta en las orejas y cero vergüenza.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-lima" href="#proximos">Ver partidos</a>
+      <a class="btn btn-ghost" href="#merch">Merch</a>
+    </div>
+    <div class="scroll-cue">Desliza</div>
+  </div>
+</section>
+
+<!-- 02 · Últimos partidos -->
+<section class="ultimos" id="ultimos">
+  <div class="wrap">
+    <span class="eyebrow">Último partido</span>
+    <h2>Lo que pasó en la arena</h2>
+    <p class="lead">Debut en la Liga de Equipos. Empezamos sin pedir permiso.</p>
+
+    <div class="matches">
+      <!-- partido por equipos: cada fila es un juego, primero nuestro marcador -->
+      <article class="match">
+        <div class="match-top"><span>24 oct</span><span class="badge win">Ganado 4-0</span></div>
+        <p class="match-vs"><b>Bumbum Tamtam</b> vs <b>Calavera</b></p>
+        <div class="team"><b>Mixto</b><div class="sets"><span class="w">9</span><span>1</span></div></div>
+        <div class="team"><b>Femenino</b><div class="sets"><span class="w">9</span><span>5</span></div></div>
+        <div class="team"><b>Mixto</b><div class="sets"><span class="w">9</span><span>4</span></div></div>
+        <div class="team"><b>Masculino</b><div class="sets"><span class="w">9</span><span>3</span></div></div>
+        <p class="match-foot">Liga de Equipos · Grupo B<br>Pleno. Ni un juego para ellos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · Sobre nosotros -->
+<section class="about" id="nosotros">
+  <div class="wrap about-grid">
+    <!-- el jugador 15 "pisa" el borde amarillo y sobresale hacia Últimos partidos -->
+    <img class="pisando" src="img/jugador-15.webp" alt="Jugador con el número 15 preparando un remate" width="600" height="917" loading="lazy">
+    <div class="about-text">
+      <span class="eyebrow">Sobre nosotros</span>
+      <h2>Mucho estilo, algo de técnica</h2>
+      <svg class="scribble" viewBox="0 0 180 16" aria-hidden="true"><path d="M3 11c22-7 40-7 58-2s34 5 52-1 38-6 64 1" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+      <p>Somos un grupo de amigos que un día cogió una raqueta en la playa y ya no la soltó.</p>
+      <p>Entrenamos poco, celebramos mucho y nunca perdemos el ritmo. Bumbum, tamtam.</p>
+      <div class="stats">
+        <div class="stat"><strong>1</strong><span>año en la arena</span></div>
+        <div class="stat"><strong>+15</strong><span>partidos jugados</span></div>
+        <div class="stat"><strong>∞</strong><span>risa</span></div>
+      </div>
+    </div>
+    <img class="mascota" src="img/mascota.webp" alt="Mascota del equipo: una bola de tenis con raqueta guiñando un ojo" width="800" height="1038" loading="lazy">
+  </div>
+</section>
+
+<!-- 04 · Merch -->
+<section class="merch" id="merch">
+  <div class="wrap">
+    <span class="eyebrow">Merch</span>
+    <h2>Viste el bumbum</h2>
+    <p class="lead">Edición limitada. Muy limitada. Lo que haya en la caja.</p>
+    <div class="products">
+      <article class="product">
+        <img src="img/camiseta.webp" alt="Camiseta blanca Bumbum Tamtam, delante y detrás" width="900" height="900" loading="lazy">
+        <div class="product-info"><div><b>Camiseta</b><small>Algodón · S a XL</small></div><span class="price">20€</span></div>
+      </article>
+      <article class="product">
+        <img src="img/conjunto.webp" alt="Conjunto de top blanco y falda verde plisada Bumbum Tamtam" width="900" height="1117" loading="lazy">
+        <div class="product-info"><div><b>Conjunto top + falda</b><small>Técnico · S a L</small></div><span class="price">55€</span></div>
+      </article>
+    </div>
+    <a class="btn btn-negro" href="https://wa.me/34600000000?text=Hola!%20Quiero%20merch%20de%20Bumbum%20Tamtam" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  </div>
+</section>
+
+<!-- 05 · Próximos partidos -->
+<section class="proximos" id="proximos">
+  <div class="wrap">
+    <span class="eyebrow">Próximos partidos</span>
+    <h2>Apunta la fecha</h2>
+    <p class="lead">Liga de Equipos, Grupo B. Ven a animar: trae agua, crema solar y tu mejor grito.</p>
+
+    <div class="dates" role="tablist" aria-label="Fechas de partidos" id="dates"></div>
+
+    <article class="next-card" id="next-card" role="tabpanel" aria-live="polite">
+      <span class="tag" id="n-tag"></span>
+      <h3 id="n-rival"></h3>
+      <p class="vs" id="n-tipo"></p>
+      <div class="next-meta">
+        <div><small>Hora</small><b id="n-hora"></b></div>
+        <div><small>Dónde</small><b class="txt" id="n-lugar"></b></div>
+      </div>
+      <a class="btn btn-lima" id="n-mapa" href="#" target="_blank" rel="noopener">Cómo llegar</a>
+    </article>
+  </div>
+</section>
+
+<!-- 06 · Frase -->
+<section class="frase" id="frase">
+  <div class="wrap frase-grid">
+    <div>
+      <svg class="squiggle" viewBox="0 0 72 24" aria-hidden="true"><path d="M3 15c8-12 14-12 18 0s10 12 16 0 12-12 16 0 10 10 16-2" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+      <blockquote>“Por muy fuertes que sean mis piernas, es mi mente la que me convierte en un campeón.”</blockquote>
+      <cite><b>Usain Bolt</b></cite>
+    </div>
+    <div class="jugadora">
+      <img src="img/jugadora.webp" alt="Jugadora saltando para rematar con la raqueta" width="600" height="2100" loading="lazy">
+      <!-- la bola que viene bajando termina aquí, encima de la raqueta -->
+      <div class="ball-land" id="ball-end"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · Footer -->
+<footer>
+  <img src="img/logo-sm.webp" alt="Bumbum Tamtam" width="300" height="116" loading="lazy">
+</footer>
+
+<script>
+/* ---------- Próximos partidos ---------- */
+// Sin fecha/hora/lugar todavía → se muestra "Por confirmar". mapa: búsqueda en Google Maps.
+const partidos = [
+  { dia:"Grupo B", num:"?", mes:"fecha", titulo:"vs Unificado", tipo:"Fase de grupos", tag:"Liga de Equipos · Grupo B" },
+  { dia:"Grupo B", num:"?", mes:"fecha", titulo:"vs Fantasy", tipo:"Fase de grupos", tag:"Liga de Equipos · Grupo B" },
+  { dia:"Sáb·Dom", num:"5-6", mes:"dic", titulo:"Fase final", tipo:"Si pasamos de grupo (pasamos), nos vemos aquí", lugar:"Playa Muchavista", mapa:"Playa Muchavista, El Campello", tag:"Liga de Equipos · 5 y 6 dic" }
+];
+const datesEl = document.getElementById("dates");
+const $ = id => document.getElementById(id);
+const POR_CONFIRMAR = "Por confirmar";
+
+function pick(i){
+  const p = partidos[i];
+  [...datesEl.children].forEach((b,j)=>b.setAttribute("aria-selected", j===i));
+  $("n-tag").textContent = p.tag;
+  $("n-rival").textContent = p.titulo;
+  $("n-tipo").textContent = p.tipo;
+  $("n-hora").textContent = p.hora || POR_CONFIRMAR;
+  $("n-hora").classList.toggle("txt", !p.hora);
+  $("n-lugar").textContent = p.lugar || POR_CONFIRMAR;
+  $("n-mapa").hidden = !p.mapa;
+  if (p.mapa) $("n-mapa").href = "https://www.google.com/maps/search/" + encodeURIComponent(p.mapa);
+}
+partidos.forEach((p,i)=>{
+  const b = document.createElement("button");
+  b.className = "date"; b.type = "button"; b.setAttribute("role","tab");
+  b.innerHTML = `<span>${p.dia}</span><strong>${p.num}</strong><span>${p.mes}</span>`;
+  b.addEventListener("click",()=>pick(i));
+  datesEl.appendChild(b);
+});
+pick(0);
+
+/* ---------- La bola ---------- */
+const ball = $("ball");
+const start = $("ball-start"), end = $("ball-end");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let A, B, maxScroll, ticking = false;
+
+function measure(){
+  const rect = el => { const r = el.getBoundingClientRect(); return { x:r.left+scrollX, y:r.top+scrollY, s:r.width }; };
+  A = rect(start); B = rect(end);
+  maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  update();
+}
+function update(){
+  ticking = false;
+  const p = reduce ? 0 : Math.min(1, Math.max(0, scrollY / maxScroll));
+  // ease para que baje rápido al principio y "aterrice" suave
+  const e = 1 - Math.pow(1 - p, 2);
+  const s = A.s + (B.s - A.s) * e;
+  const rightEdge = innerWidth - s - 10;
+  // de la posición del hero al borde derecho, y al final al footer
+  const midX = Math.min(A.x, rightEdge);
+  const x = p < .85 ? A.x + (midX - A.x) * Math.min(1, p / .15) + Math.sin(p * Math.PI * 8) * 6
+                    : midX + (B.x - midX) * ((p - .85) / .15);
+  const y = A.y + (B.y - A.y) * p;
+  // pequeño bote vertical
+  const bounce = p > .02 && p < .98 ? -Math.abs(Math.sin(p * Math.PI * 10)) * 14 : 0;
+  ball.style.transform = `translate3d(${x}px,${y + bounce}px,0) scale(${s / 100})`;
+  // el SVG gira sobre su centro dentro de la caja
+  svg.style.transform = `rotate(${reduce ? 0 : scrollY * .35}deg)`;
+}
+const svg = ball.firstElementChild;
+
+addEventListener("scroll", () => { if(!ticking){ ticking = true; requestAnimationFrame(update); } }, { passive:true });
+addEventListener("resize", measure);
+addEventListener("load", measure);
+measure();
+</script>
+</body>
+</html>
