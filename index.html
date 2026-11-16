@@ -172,7 +172,7 @@ footer{background:var(--negro);color:var(--hueso);padding:32px var(--gut) calc(2
   .ball-spot{width:180px}
   .hero p{font-size:22px}
   .hero-ctas .btn{flex:0 0 auto}
-  .matches{grid-template-columns:repeat(auto-fill,minmax(300px,380px));width:calc(100% - 340px)}
+  .matches{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));width:calc(100% - 340px)}
   .match{padding:20px}
   .match-top{font-size:14px;margin-bottom:18px}
   .team b{font-size:16px}
@@ -228,12 +228,21 @@ footer{background:var(--negro);color:var(--hueso);padding:32px var(--gut) calc(2
 <!-- 02 · Últimos partidos -->
 <section class="ultimos" id="ultimos">
   <div class="wrap">
-    <span class="eyebrow">Último partido</span>
+    <span class="eyebrow">Últimos partidos</span>
     <h2>Lo que pasó en la arena</h2>
-    <p class="lead">Debut en la Liga de Equipos. Empezamos sin pedir permiso.</p>
+    <p class="lead">Dos jornadas en la Liga de Equipos, dos plenos. Seguimos sin pedir permiso.</p>
 
     <div class="matches">
-      <!-- partido por equipos: cada fila es un juego, primero nuestro marcador -->
+      <!-- partido por equipos: cada fila es un juego, primero nuestro marcador. El más reciente primero -->
+      <article class="match">
+        <div class="match-top"><span>14 nov</span><span class="badge win">Ganado 4-0</span></div>
+        <p class="match-vs"><b>Bumbum Tamtam</b> vs <b>Unificado</b></p>
+        <div class="team"><b>Mixto</b><div class="sets"><span class="w">9</span><span>5</span></div></div>
+        <div class="team"><b>Femenino</b><div class="sets"><span class="w">9</span><span>5</span></div></div>
+        <div class="team"><b>Masculino</b><div class="sets"><span class="w">9</span><span>0</span></div></div>
+        <div class="team"><b>Mixto</b><div class="sets"><span class="w">9</span><span>3</span></div></div>
+        <p class="match-foot">Liga de Equipos · Grupo B<br>Otro pleno. Y un 9-0 de regalo.</p>
+      </article>
       <article class="match">
         <div class="match-top"><span>24 oct</span><span class="badge win">Ganado 4-0</span></div>
         <p class="match-vs"><b>Bumbum Tamtam</b> vs <b>Calavera</b></p>
@@ -377,7 +386,6 @@ footer{background:var(--negro);color:var(--hueso);padding:32px var(--gut) calc(2
 /* ---------- Próximos partidos ---------- */
 // Sin fecha/hora/lugar todavía → se muestra "Por confirmar". mapa: búsqueda en Google Maps.
 const partidos = [
-  { dia:"Sáb", num:14, mes:"nov", titulo:"vs Unificado", tipo:"Fase de grupos", tag:"Grupo B · 14 nov" },
   { dia:"Sáb", num:21, mes:"nov", titulo:"vs Fantasy", tipo:"Fase de grupos", hora:"11:00", tag:"Grupo B · 21 nov" },
   { dia:"Sáb·Dom", num:"5-6", mes:"dic", titulo:"Fase final", tipo:"Si pasamos de grupo (pasamos), nos vemos aquí", lugar:"Playa Muchavista", mapa:"Playa Muchavista, El Campello", tag:"Liga de Equipos · 5 y 6 dic" }
 ];
