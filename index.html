@@ -38,66 +38,30 @@ h2{font-size:clamp(40px,11vw,76px);font-weight:800;line-height:.92;letter-spacin
 .btn-ghost{background:transparent;color:var(--hueso);border-color:var(--hueso)}
 .btn-negro{background:var(--negro);color:var(--hueso)}
 
-/* ---------- Hero (estilo editor de fotos) ---------- */
-.hero{background:radial-gradient(90% 60% at 85% 0%,rgba(227,227,68,.55) 0%,rgba(227,227,68,0) 70%),linear-gradient(180deg,var(--hueso) 0%,var(--crema) 100%);color:var(--negro);min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:36px;padding-bottom:56px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;width:100%}
+/* ---------- Hero (foto de fondo, look de película) ---------- */
+.hero{--noche:#14160b;background:var(--noche);color:var(--hueso);min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:48px;padding-bottom:44px;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;animation:respira 18s ease-in-out infinite alternate}
+/* oscurece donde va el texto + viñeta de cine */
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,22,11,.55) 0%,rgba(20,22,11,0) 28%,rgba(20,22,11,0) 42%,rgba(20,22,11,.82) 70%,var(--noche) 100%),
+             radial-gradient(120% 90% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.5) 100%)}
+/* grano animado */
+.grano{position:absolute;inset:-50%;z-index:-1;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grano .8s steps(4) infinite}
+.hero-grid{width:100%}
+.hero-copy{max-width:520px}
 .hero-title{display:grid;grid-template-columns:minmax(0,1fr) 72px;align-items:center;gap:8px}
 .hero-title h1{margin:0}
-.hero-title img{width:100%}
+.hero-title img{width:100%;filter:drop-shadow(0 6px 0 rgba(0,0,0,.35))}
 .ball-spot{width:72px;aspect-ratio:1;justify-self:end}
-.hero p{font-size:18px;margin:16px 0 22px;max-width:30ch}
+.hero p{font-size:18px;margin:16px 0 24px;max-width:30ch;color:var(--crema);text-shadow:0 1px 12px rgba(0,0,0,.5)}
 .hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
 .hero-ctas .btn{flex:1 1 140px}
-.hero .btn-ghost{color:var(--negro);border-color:var(--negro)}
-
-.editor{position:relative;margin:80px 4px 0}
-.lienzo{position:relative;aspect-ratio:1400/790}
-.lienzo::before{content:"";position:absolute;inset:0;border-radius:26px;border:2.5px solid var(--negro);box-shadow:0 8px 0 var(--negro);
-  background:radial-gradient(60% 70% at 50% 100%,rgba(227,227,68,.55),rgba(227,227,68,0) 70%),repeating-conic-gradient(from -90deg at 50% 110%,#11501f 0 5deg,var(--pino) 5deg 10deg)}
-/* la foto se recorta a los lados y abajo, pero las cabezas salen por arriba */
-.recorte{position:absolute;inset:2.5px;clip-path:inset(-40% 0 0 0 round 0 0 23px 23px)}
-.recorte img{position:absolute;left:0;bottom:0;width:100%}
-.seleccion{position:absolute;left:50%;bottom:7%;transform:translateX(-50%) rotate(-5deg);padding:0 .22em .06em;border:2px solid var(--lima);
-  font:italic 500 clamp(44px,13vw,92px)/1.05 "Fraunces",serif;color:var(--lima);white-space:nowrap;-webkit-text-stroke:5px var(--negro);paint-order:stroke fill;text-shadow:0 5px 0 var(--negro)}
-.seleccion i{position:absolute;width:11px;height:11px;background:var(--hueso);border:2px solid var(--negro);border-radius:3px}
-.seleccion i:nth-of-type(1){left:-7px;top:-7px}.seleccion i:nth-of-type(2){right:-7px;top:-7px}
-.seleccion i:nth-of-type(3){left:-7px;bottom:-7px}.seleccion i:nth-of-type(4){right:-7px;bottom:-7px}
-.emoji{position:absolute;line-height:1;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25));animation:bote 2.6s ease-in-out infinite}
-.emoji.e1{font-size:46px;right:4%;top:-30px}
-.emoji.e2{font-size:30px;left:54%;top:3%;animation-delay:-1.2s}
-
-.panel{position:absolute;z-index:3;background:rgba(242,243,236,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:2px solid var(--negro);border-radius:16px;padding:7px;box-shadow:0 5px 0 var(--negro);animation:flotar 5s ease-in-out infinite}
-.panel b{display:block;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:0 2px 5px}
-.efectos{left:-8px;top:-64px}
-.efectos .fx{display:flex;gap:4px}
-.efectos .fx span{width:30px;height:36px;border-radius:7px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;border:1.5px solid var(--negro)}
-.efectos .fx img{width:120%;max-width:none}
-.fx span:nth-child(1){background:var(--lima)}
-.fx span:nth-child(2){background:var(--pino)}.fx span:nth-child(2) img{filter:invert(1) sepia(1) hue-rotate(20deg) saturate(3)}
-.fx span:nth-child(3){background:var(--crema)}.fx span:nth-child(3) img{filter:contrast(1.6)}
-.fx span:nth-child(4){background:var(--negro);outline:2.5px solid var(--lima);outline-offset:1px}.fx span:nth-child(4) img{filter:invert(1)}
-.stickers{right:-8px;bottom:-54px;animation-delay:-2.5s}
-.stickers .st{display:grid;grid-template-columns:repeat(3,26px);gap:4px}
-.stickers .st span{height:26px;display:grid;place-items:center;font-size:18px;border-radius:7px;background:var(--hueso)}
-.stickers .st span.on{background:var(--lima);outline:2px solid var(--negro)}
-.cursor{position:absolute;width:24px;right:32px;bottom:-4px;filter:drop-shadow(0 2px 0 rgba(0,0,0,.3));animation:clic 2.4s ease-in-out infinite}
-.chip{position:absolute;z-index:4;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 15px;border-radius:99px;border:2px solid var(--negro);font-size:14px;font-weight:600;box-shadow:0 4px 0 var(--negro);white-space:nowrap}
-.chip-efectos{background:var(--lima);left:-10px;bottom:24%;transform:rotate(-4deg)}
-.chip-stickers{background:var(--pino);color:var(--hueso);left:30%;bottom:-24px;transform:rotate(3deg)}
-
-.timeline{position:relative;margin-top:72px;background:var(--negro);border-radius:14px;padding:6px;display:flex;gap:4px;box-shadow:0 5px 0 rgba(0,0,0,.15)}
-.timeline span{flex:1;height:38px;border-radius:6px;background:url(img/equipo-hero.webp) center/auto 150% no-repeat}
-.timeline span:nth-child(2n){filter:grayscale(1) contrast(1.2)}
-.timeline span:nth-child(1){background-position:5% 30%}.timeline span:nth-child(2){background-position:25% 0}.timeline span:nth-child(3){background-position:45% 20%}
-.timeline span:nth-child(4){background-position:62% 15%}.timeline span:nth-child(5){background-position:80% 0}.timeline span:nth-child(6){background-position:98% 20%}
-.cabezal{position:absolute;top:-8px;bottom:-8px;left:30%;width:3px;background:var(--lima);border-radius:2px;box-shadow:0 0 0 1.5px var(--negro);animation:cabezal 7s linear infinite}
-.cabezal::before{content:"";position:absolute;top:-5px;left:-6px;width:15px;height:11px;background:var(--lima);border:1.5px solid var(--negro);border-radius:4px}
-.tl-meta{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-top:8px;opacity:.7}
-
-@keyframes flotar{0%,100%{translate:0 0}50%{translate:0 -6px}}
-@keyframes bote{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-8px) rotate(8deg)}}
-@keyframes clic{0%,60%,100%{transform:translate(0,0) scale(1)}70%{transform:translate(-2px,-2px) scale(.85)}}
-@keyframes cabezal{from{left:2%}to{left:98%}}
+.hero .btn-ghost{background:rgba(20,22,11,.35);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@keyframes respira{from{transform:scale(1.02)}to{transform:scale(1.08)}}
+@keyframes grano{0%{transform:translate(0,0)}25%{transform:translate(-6%,4%)}50%{transform:translate(5%,-7%)}75%{transform:translate(-3%,-4%)}100%{transform:translate(4%,6%)}}
 
 /* ---------- Últimos partidos ---------- */
 .ultimos{background:var(--hueso)}
@@ -217,25 +181,19 @@ footer{background:var(--negro);color:var(--hueso);padding:32px var(--gut) calc(2
 @media (min-width:760px){
   :root{--gut:40px}
   section,footer{padding-top:110px;padding-bottom:110px}
-  .hero{padding-top:72px;padding-bottom:88px}
+  .hero{justify-content:center;padding-top:96px;padding-bottom:96px}
   .hero .wrap{max-width:1180px}
-  .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:72px}
+  /* la foto ocupa la derecha y se funde hacia el texto */
+  .hero-bg{left:38%}
+  .hero-bg img{object-position:62% 45%;transform-origin:70% 40%}
+  .hero-bg::after{background:linear-gradient(90deg,var(--noche) 0%,rgba(20,22,11,.7) 10%,rgba(20,22,11,0) 32%),
+    linear-gradient(0deg,rgba(20,22,11,.6) 0%,rgba(20,22,11,0) 30%),
+    radial-gradient(110% 90% at 60% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.45) 100%)}
+  .hero-copy{max-width:470px}
   .hero-title{grid-template-columns:minmax(0,1fr) 110px;gap:16px}
   .ball-spot{width:110px}
-  .hero p{font-size:21px;margin:22px 0 28px}
+  .hero p{font-size:21px;margin:22px 0 30px}
   .hero-ctas .btn{flex:0 0 auto}
-  .editor{margin:40px 0 0}
-  .seleccion{font-size:clamp(56px,6.4vw,92px)}
-  .panel{padding:9px}
-  .efectos{left:-36px;top:-50px}
-  .efectos .fx span{width:40px;height:48px}
-  .stickers{right:-30px;bottom:-40px}
-  .stickers .st{grid-template-columns:repeat(3,32px)}
-  .stickers .st span{height:32px;font-size:21px}
-  .chip{height:40px;font-size:15px}
-  .chip-efectos{left:-40px}
-  .chip-stickers{left:auto;right:170px;bottom:-26px}
-  .emoji.e1{font-size:60px;top:-40px}
   .matches{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));width:calc(100% - 340px)}
   .match{padding:20px}
   .match-top{font-size:14px;margin-bottom:18px}
@@ -255,7 +213,7 @@ footer{background:var(--negro);color:var(--hueso);padding:32px var(--gut) calc(2
   .jugadora img{width:auto;height:min(560px,62vh)}
   footer{padding-top:36px;padding-bottom:28px}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.panel,.emoji,.cursor,.cabezal{animation:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-bg img,.grano{animation:none}}
 </style>
 </head>
 <body>
@@ -275,6 +233,8 @@ footer{background:var(--negro);color:var(--hueso);padding:32px var(--gut) calc(2
 
 <!-- 01 · Hero -->
 <section class="hero" id="inicio">
+  <div class="hero-bg"><img src="img/hero-film.webp" alt="El equipo Bumbum Tamtam en la playa al atardecer" width="2000" height="1500" fetchpriority="high"></div>
+  <div class="grano" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <div class="hero-title">
@@ -286,38 +246,6 @@ footer{background:var(--negro);color:var(--hueso);padding:32px var(--gut) calc(2
         <a class="btn btn-lima" href="#proximos">Ver partidos</a>
         <a class="btn btn-ghost" href="#merch">Merch</a>
       </div>
-    </div>
-
-    <div class="editor">
-      <div class="lienzo">
-        <div class="recorte"><img src="img/equipo-hero.webp" alt="El equipo Bumbum Tamtam en la playa" width="1400" height="866" fetchpriority="high"></div>
-        <div class="seleccion" aria-hidden="true">¡Vamos!<i></i><i></i><i></i><i></i></div>
-        <span class="emoji e1" aria-hidden="true">😎</span>
-        <span class="emoji e2" aria-hidden="true">🔥</span>
-
-        <div class="panel efectos" aria-hidden="true">
-          <b>Efectos</b>
-          <div class="fx">
-            <span><img src="img/cara-cindy.webp" alt=""></span>
-            <span><img src="img/cara-cindy.webp" alt=""></span>
-            <span><img src="img/cara-cindy.webp" alt=""></span>
-            <span><img src="img/cara-cindy.webp" alt=""></span>
-          </div>
-        </div>
-        <div class="panel stickers" aria-hidden="true">
-          <b>Stickers</b>
-          <div class="st"><span class="on">🎾</span><span>🏆</span><span>🔥</span><span>💪</span><span>😂</span><span>🏖️</span></div>
-          <svg class="cursor" viewBox="0 0 24 24"><path d="M4 2l15 9-6.5 1.6L16 20l-3 1.4-3.4-7.4L4 18z" fill="#E3E344" stroke="#000" stroke-width="1.8" stroke-linejoin="round"/></svg>
-        </div>
-        <span class="chip chip-efectos" aria-hidden="true">✦ Efectos</span>
-        <span class="chip chip-stickers" aria-hidden="true">☺ Stickers</span>
-      </div>
-
-      <div class="timeline" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
-        <i class="cabezal"></i>
-      </div>
-      <div class="tl-meta" aria-hidden="true"><span>Liga de Equipos</span><span>4-0 · 4-0 · ▶</span></div>
     </div>
   </div>
 </section>
